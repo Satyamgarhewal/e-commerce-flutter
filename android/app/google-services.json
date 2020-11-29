@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "838442979653",
+    "firebase_url": "https://e-commerce-fc362.firebaseio.com",
+    "project_id": "e-commerce-fc362",
+    "storage_bucket": "e-commerce-fc362.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838442979653:android:37ed695048566d62caae2c",
+        "android_client_info": {
+          "package_name": "satyamgarhewal.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838442979653-hao2jqns2aktj08ng73mp2slre42ua3a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGMITRw6jExKln8PFIQk41ubDx5dVd88M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "838442979653-hao2jqns2aktj08ng73mp2slre42ua3a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
