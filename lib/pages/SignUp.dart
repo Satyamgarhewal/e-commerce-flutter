@@ -1,21 +1,25 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
 
-//components
-import 'package:e_commerce/components/guestOnboardHeader.dart';
+import 'package:flutter/material.dart';
 
 // utils
 import 'package:e_commerce/utils/constants.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 
-class LoginScreen extends StatefulWidget {
+// components
+import 'package:e_commerce/components/guestOnboardHeader.dart';
+
+class SignUp extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpState extends State<SignUp> {
   bool isEmailValid = true;
+  String password;
   bool isPwdValid = true;
+  bool isConfirmPwdValid = true;
 
   void _handleEmailChange(value) {
     if ((!value.contains('@') || !value.contains('.com')) && value.length > 0) {
@@ -38,6 +42,19 @@ class _LoginScreenState extends State<LoginScreen> {
     } else {
       setState(() {
         isPwdValid = true;
+        password = value;
+      });
+    }
+  }
+
+  void _handleConfirmPwdChange(value) {
+    if (value == password) {
+      setState(() {
+        isConfirmPwdValid = true;
+      });
+    } else if (value != password && isConfirmPwdValid) {
+      setState(() {
+        isConfirmPwdValid = false;
       });
     }
   }
@@ -57,24 +74,26 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             Expanded(
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    padding: EdgeInsets.fromLTRB(0, 20.0, 0, 0),
                     child: Text(
-                      'Welcome back,',
+                      'Create your account',
                       style: TextStyle(
                           color: kBasicTextColor,
-                          fontSize: 30.0,
+                          fontSize: 25.0,
                           fontWeight: FontWeight.w900,
                           fontFamily: 'Comfortaa'),
                     ),
                   ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
                   Text(
-                    'Login to continue',
+                    'Sign up and get started',
                     style: TextStyle(
                         color: kBasicTextColor,
                         fontSize: 15.0,
@@ -87,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       vertical: 10.0,
                     ),
                     child: Lottie.asset(
-                      'assets/lf30_editor_ly9ftyq9 (2).json',
+                      'assets/lf30_editor_iwwdd5x3.json',
                       repeat: true,
                       reverse: false,
                       animate: true,
@@ -176,6 +195,63 @@ class _LoginScreenState extends State<LoginScreen> {
                                     horizontal: 40.0, vertical: 10.0),
                                 child: Text(
                                   '* Enter valid Password',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w800,
+                                      color: Colors.red,
+                                      fontSize: 10.0),
+                                ),
+                              ),
+                              Container(
+                                width: double.infinity,
+                              )
+                            ])
+                      : SizedBox(
+                          height: 0.0,
+                        ),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 40.0,
+                    ),
+                    child: TextField(
+                      style: TextStyle(
+                          color: kBasicTextColor, fontSize: 10.0, height: 2.0),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.transparent,
+                        hintText: 'Confirm password',
+                        hintStyle:
+                            TextStyle(color: kBasicTextColor, fontSize: 15.0),
+                        border: UnderlineInputBorder(
+                            borderSide: const BorderSide(
+                          color: Colors.white,
+                          width: 10.0,
+                        )),
+                      ),
+                      obscureText: true,
+                      // ignore: deprecated_member_use
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(
+                            RegExp("[a-zA-z0-9]")),
+                        FilteringTextInputFormatter.deny(RegExp("[_`^/]")),
+                      ],
+                      onChanged: (value) {
+                        _handleConfirmPwdChange(value);
+                      },
+                    ),
+                  ),
+                  !isConfirmPwdValid
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 40.0, vertical: 10.0),
+                                child: Text(
+                                  '* Password doesn\'t match',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w800,

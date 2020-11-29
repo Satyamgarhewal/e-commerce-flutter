@@ -3,6 +3,8 @@ import 'pages/Dashboard.dart';
 import 'pages/MyProfile.dart';
 import 'pages/BottomNavPage.dart';
 import 'pages/login.dart';
+import 'pages/Welcome.dart';
+import 'pages/SignUp.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,8 +23,10 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         // '/': (context) => BottomNavPage(),
+        '/': (context) => Welcome(),
+        '/login': (context) => LoginScreen(),
+        '/signup': (context) => SignUp(),
         '/myprofile': (context) => MyProfile(),
-        '/': (context) => LoginScreen()
       },
     );
   }
