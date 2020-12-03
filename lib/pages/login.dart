@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 
 //components
 import 'package:e_commerce/components/guestOnboardHeader.dart';
+import 'package:e_commerce/components/SecondaryHeading.dart';
+import 'package:e_commerce/components/PageHeading.dart';
+import 'package:e_commerce/components/LottiAsset.dart';
+import 'package:e_commerce/components/EmailTextField.dart';
+import 'package:e_commerce/components/EnterValidMessage.dart';
+import 'package:e_commerce/components/PasswordTextField.dart';
+import 'package:e_commerce/components/BasicButton.dart';
 
 // utils
 import 'package:e_commerce/utils/constants.dart';
 import 'package:flutter/services.dart';
-import 'package:lottie/lottie.dart';
+import 'package:e_commerce/utils/stringConstants.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -17,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isEmailValid = true;
   bool isPwdValid = true;
 
-  void _handleEmailChange(value) {
+  void handleEmailChange(value) {
     if ((!value.contains('@') || !value.contains('.com')) && value.length > 0) {
       setState(() {
         isEmailValid = false;
@@ -30,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  void _handlePasswordChange(value) {
+  void handlePasswordChange(value) {
     if (value.length < 6 && value.length > 0) {
       setState(() {
         isPwdValid = false;
@@ -40,6 +47,10 @@ class _LoginScreenState extends State<LoginScreen> {
         isPwdValid = true;
       });
     }
+  }
+
+  void handleOnPress() {
+    print('Handle press clicked');
   }
 
   @override
@@ -64,69 +75,32 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                    child: Text(
-                      'Welcome back,',
-                      style: TextStyle(
-                          color: kBasicTextColor,
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.w900,
-                          fontFamily: 'Comfortaa'),
+                    child: PageHeading(
+                      heading: WELCOME_BACK,
                     ),
                   ),
-                  Text(
-                    'Login to continue',
-                    style: TextStyle(
-                        color: kBasicTextColor,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: 'Comfortaa'),
-                  ),
+                  SecondaryHeading(heading: LOGIN_TO_CONTINUE),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 40.0,
                       vertical: 10.0,
                     ),
-                    child: Lottie.asset(
-                      'assets/lf30_editor_ly9ftyq9 (2).json',
-                      repeat: true,
-                      reverse: false,
-                      animate: true,
-                    ),
+                    child: LottieAsset(
+                        asset: 'assets/lf30_editor_ly9ftyq9 (2).json'),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 40.0, vertical: 10.0),
-                    child: TextField(
-                      style: TextStyle(
-                        color: kBasicTextColor,
-                        fontSize: 15.0,
-                        height: 2.0,
-                      ),
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.transparent,
-                        hintText: 'Email',
-                        hintStyle: TextStyle(color: kBasicTextColor),
-                        border: UnderlineInputBorder(),
-                      ),
-                      onChanged: (value) {
-                        _handleEmailChange(value);
-                      },
-                    ),
-                  ),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 40.0, vertical: 10.0),
+                      child: EmailTextField(
+                          handleEmailChange: handleEmailChange, hint: EMAIL)),
                   !isEmailValid
                       ? Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 40.0),
-                                child: Text(
-                                  '* Enter valid email',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w800,
-                                      color: Colors.red,
-                                      fontSize: 10.0),
+                                child: EnterValidMessage(
+                                  invalidMesage: ENTER_VALID_EMAIL,
                                 ),
                               ),
                               Container(
@@ -140,79 +114,24 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: EdgeInsets.symmetric(
                       horizontal: 40.0,
                     ),
-                    child: TextField(
-                      style: TextStyle(
-                          color: kBasicTextColor, fontSize: 10.0, height: 2.0),
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.transparent,
-                        hintText: 'Password',
-                        hintStyle:
-                            TextStyle(color: kBasicTextColor, fontSize: 15.0),
-                        border: UnderlineInputBorder(
-                            borderSide: const BorderSide(
-                          color: Colors.white,
-                          width: 10.0,
-                        )),
-                      ),
-                      obscureText: true,
-                      // ignore: deprecated_member_use
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(
-                            RegExp("[a-zA-z0-9]")),
-                        FilteringTextInputFormatter.deny(RegExp("[_`^/]")),
-                      ],
-                      onChanged: (value) {
-                        _handlePasswordChange(value);
-                      },
+                    child: PasswordTextField(
+                      handlePasswordChange: handlePasswordChange,
+                      hintText: PASSWORD,
                     ),
                   ),
                   !isPwdValid
-                      ? Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 40.0, vertical: 10.0),
-                                child: Text(
-                                  '* Enter valid Password',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w800,
-                                      color: Colors.red,
-                                      fontSize: 10.0),
-                                ),
-                              ),
-                              Container(
-                                width: double.infinity,
-                              )
-                            ])
+                      ? EnterValidMessage(
+                          invalidMesage: ENTER_VALID_PWD,
+                        )
                       : SizedBox(
                           height: 0.0,
                         ),
                   SizedBox(
                     height: 30.0,
                   ),
-                  FlatButton(
-                    color: kBasicOrange,
-                    minWidth: 200.0,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 13.0),
-                      child: Text(
-                        'Proceed',
-                        style: TextStyle(
-                            color: kBasicTextColor,
-                            fontSize: 15.0,
-                            fontFamily: 'Comfortaa',
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    onPressed: () {
-                      print('on pressed clicked');
-                    },
+                  BasicButton(
+                    handleOnPress: handleOnPress,
+                    name: PROCEED,
                   )
                 ],
               ),

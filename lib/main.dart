@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'pages/Dashboard.dart';
 import 'pages/MyProfile.dart';
 import 'pages/BottomNavPage.dart';
-import 'pages/login.dart';
+import 'pages/Login.dart';
 import 'pages/Welcome.dart';
 import 'pages/SignUp.dart';
 

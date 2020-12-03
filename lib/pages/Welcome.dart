@@ -1,17 +1,21 @@
 import 'dart:ui';
 
+import 'package:e_commerce/utils/stringConstants.dart';
 import 'package:flutter/material.dart';
 
 // utils
 import 'package:e_commerce/utils/constants.dart';
 
 // components
-import 'package:lottie/lottie.dart';
+import 'package:e_commerce/components/PageHeading.dart';
+import 'package:e_commerce/components/SecondaryHeading.dart';
+import 'package:e_commerce/components/LottiAsset.dart';
 
 class Welcome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -27,32 +31,14 @@ class Welcome extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 100.0, 0, 0),
-                    child: Text(
-                      'Hello,',
-                      style: TextStyle(
-                          color: kBasicTextColor,
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.w900,
-                          fontFamily: 'Comfortaa'),
-                    ),
+                    child: PageHeading(heading: HELLO),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10.0),
-                    child: Text(
-                      'Please login or sign up',
-                      style: TextStyle(
-                          color: kBasicTextColor,
-                          fontSize: 15.0,
-                          fontWeight: FontWeight.w300,
-                          fontFamily: 'Comfortaa'),
-                    ),
-                  ),
-                  Lottie.asset(
-                    'assets/lf30_editor_rjtsruzw.json',
-                    repeat: true,
-                    reverse: false,
-                    animate: true,
-                  ),
+                      padding: EdgeInsets.symmetric(vertical: 10.0),
+                      child: SecondaryHeading(
+                        heading: PLEASE_LOGIN_OR_SIGNUP,
+                      )),
+                  LottieAsset(asset: 'assets/lf30_editor_rjtsruzw.json'),
                   SizedBox(
                     height: 20.0,
                   ),
