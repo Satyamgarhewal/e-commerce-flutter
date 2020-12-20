@@ -10,14 +10,14 @@ class BasicButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
-      color: kBasicOrange,
+      color: kBasicTextColor,
       minWidth: 200.0,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 13.0),
         child: Text(
           name,
           style: TextStyle(
-              color: kBasicTextColor,
+              color: Colors.white,
               fontSize: 15.0,
               fontFamily: 'Comfortaa',
               fontWeight: FontWeight.w500),

@@ -15,15 +15,7 @@ class Settings extends StatelessWidget {
       appBar: PageHeader(
         header: 'Settings',
       ),
-      body: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-          colors: [kBasicOrange, kBasicPink],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          stops: [0.2, 0.7],
-        )),
-      ),
+      body: Container(),
     );
     // return BackgroundGradient();
   }

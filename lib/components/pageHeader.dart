@@ -12,7 +12,7 @@ class PageHeader extends StatelessWidget implements PreferredSizeWidget {
       leading: Builder(
         builder: (BuildContext context) {
           return Padding(
-            padding: EdgeInsets.fromLTRB(10.0, 20.0, 0, 0),
+            padding: EdgeInsets.fromLTRB(10.0, 0.0, 0, 0),
             child: IconButton(
               icon: const Icon(Icons.menu),
               color: kBasicTextColor,
@@ -24,22 +24,50 @@ class PageHeader extends StatelessWidget implements PreferredSizeWidget {
           );
         },
       ),
-      title: Padding(
-        padding: EdgeInsets.fromLTRB(55.0, 20.0, 0, 0),
-        child: Text(
-          header,
-          textAlign: TextAlign.center,
-          style: TextStyle(
+      actions: [
+        IconButton(
+          icon: const Icon(
+            Icons.search,
             color: kBasicTextColor,
-            fontFamily: 'Comfortaa',
-            fontWeight: FontWeight.w900,
-            fontSize: 30.0,
+            size: 30.0,
           ),
+          onPressed: () {
+            Navigator.pushNamed(context, '/search');
+          },
         ),
-      ),
-      backgroundColor: kBasicOrange,
+        SizedBox(
+          width: 10.0,
+        ),
+        IconButton(
+          icon: const Icon(
+            Icons.notifications_none_outlined,
+            color: kBasicTextColor,
+            size: 30.0,
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, '/notifications');
+          },
+        ),
+        SizedBox(
+          width: 10.0,
+        ),
+        IconButton(
+          icon: const Icon(
+            Icons.shopping_bag_outlined,
+            color: kBasicTextColor,
+            size: 30.0,
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, '/shoppingbag');
+          },
+        ),
+        SizedBox(
+          width: 10.0,
+        ),
+      ],
+      backgroundColor: Colors.white,
       bottomOpacity: 0.0,
-      elevation: 0.0,
+      elevation: 0,
     );
   }
 

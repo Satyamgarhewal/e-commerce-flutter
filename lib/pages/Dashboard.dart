@@ -14,19 +14,7 @@ class Dashboard extends StatelessWidget {
     return Scaffold(
       drawer: Hamburger(),
       appBar: PageHeader(header: 'Dashboard'),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            stops: [0.2, 0.7],
-            colors: [
-              kBasicOrange,
-              kBasicPink,
-            ],
-          ),
-        ),
-      ),
+      body: Container(),
     );
   }
 }

@@ -17,75 +17,62 @@ class Welcome extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       body: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [kBasicOrange, kBasicPink],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                stops: [0.2, 0.7])),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 100.0, 0, 0),
-                    child: PageHeading(heading: HELLO),
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 100.0, 0, 0),
+              child: PageHeading(heading: HELLO),
+            ),
+            Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: SecondaryHeading(
+                  heading: PLEASE_LOGIN_OR_SIGNUP,
+                )),
+            LottieAsset(asset: 'assets/lf30_editor_rjtsruzw.json'),
+            SizedBox(
+              height: 20.0,
+            ),
+            FlatButton(
+              color: kBasicTextColor,
+              minWidth: 200.0,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 13.0),
+                child: Text(
+                  'Login',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15.0,
+                    fontFamily: 'Comfortaa',
+                    fontWeight: FontWeight.w500,
                   ),
-                  Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.0),
-                      child: SecondaryHeading(
-                        heading: PLEASE_LOGIN_OR_SIGNUP,
-                      )),
-                  LottieAsset(asset: 'assets/lf30_editor_rjtsruzw.json'),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  FlatButton(
-                    color: kBasicOrange,
-                    minWidth: 200.0,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 13.0),
-                      child: Text(
-                        'Login',
-                        style: TextStyle(
-                          color: kBasicTextColor,
-                          fontSize: 15.0,
-                          fontFamily: 'Comfortaa',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/login');
-                    },
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  FlatButton(
-                    color: kBasicOrange,
-                    minWidth: 200.0,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 13.0),
-                      child: Text(
-                        'Sign up',
-                        style: TextStyle(
-                          color: kBasicTextColor,
-                          fontSize: 15.0,
-                          fontFamily: 'Comfortaa',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/signup');
-                    },
-                  ),
-                ],
+                ),
               ),
-            )
+              onPressed: () {
+                Navigator.pushNamed(context, '/login');
+              },
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            FlatButton(
+              color: kBasicTextColor,
+              minWidth: 200.0,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 13.0),
+                child: Text(
+                  'Sign up',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15.0,
+                    fontFamily: 'Comfortaa',
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/signup');
+              },
+            ),
           ],
         ),
       ),

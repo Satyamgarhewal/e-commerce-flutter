@@ -40,6 +40,11 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Recognize and display speech input</string>
+	<string>Detect speech input</string>
+	<key>NSMicrophoneUsageDescription</key>
+	
 	<false/>
 </dict>
 </plist>

@@ -17,15 +17,18 @@ class _BottomNavigationState extends State<BottomNavigation> {
       iconSize: 30.0,
       items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.dashboard),
+          icon: Icon(Icons.home),
+          // ignore: deprecated_member_use
           title: Text(''),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.account_circle),
+          icon: Icon(Icons.account_circle_outlined),
+          // ignore: deprecated_member_use
           title: Text(''),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),
+          // ignore: deprecated_member_use
           title: Text(''),
         ),
       ],

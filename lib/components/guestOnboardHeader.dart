@@ -5,6 +5,7 @@ import 'package:e_commerce/utils/constants.dart';
 
 class GuestOnboardHeader extends StatelessWidget
     implements PreferredSizeWidget {
+  GuestOnboardHeader();
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -15,7 +16,7 @@ class GuestOnboardHeader extends StatelessWidget
             child: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/');
               },
               alignment: Alignment.center,
               color: kBasicTextColor,
@@ -24,9 +25,8 @@ class GuestOnboardHeader extends StatelessWidget
           );
         },
       ),
-      backgroundColor: kBasicOrange,
-      bottomOpacity: 0.0,
-      elevation: 0.0,
+      backgroundColor: Colors.white,
+      elevation: 0,
     );
   }
 

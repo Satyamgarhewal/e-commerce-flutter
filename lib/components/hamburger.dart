@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 // utils
 import 'package:e_commerce/utils/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Hamburger extends StatelessWidget {
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -62,22 +64,25 @@ class Hamburger extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
-              Icons.message,
-              color: kBasicTextColor,
-            ),
-            title: Text(
-              'Notifications',
-              style: TextStyle(color: kBasicTextColor),
-            ),
-          ),
-          ListTile(
-            leading: Icon(
               Icons.settings,
               color: kBasicTextColor,
             ),
             title: Text(
               'Settings',
               style: TextStyle(color: kBasicTextColor),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              _auth.signOut();
+              Navigator.pushNamed(context, '/login');
+            },
+            child: ListTile(
+              leading: Icon(Icons.logout, color: kBasicTextColor),
+              title: Text(
+                'Logout',
+                style: TextStyle(color: kBasicTextColor),
+              ),
             ),
           ),
         ],

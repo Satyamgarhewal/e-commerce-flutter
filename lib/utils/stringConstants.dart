@@ -13,3 +13,5 @@ const HELLO = 'Hello,';
 const PLEASE_LOGIN_OR_SIGNUP = 'Please login or sign up';
 const LOGIN = 'Login';
 const SIGNUP = 'Sign up';
+const NOTIFICATIONS = 'NOTIFICATIONS';
+const SHOPPING_BAG = ' SHOPPING BAG';
