@@ -1,4 +1,3 @@
-import 'package:e_commerce/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 // Components

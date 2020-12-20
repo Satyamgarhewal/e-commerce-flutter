@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:e_commerce/utils/constants.dart';
 
+// ignore: must_be_immutable
 class PasswordTextField extends StatelessWidget {
   PasswordTextField({
     @required this.hintText,

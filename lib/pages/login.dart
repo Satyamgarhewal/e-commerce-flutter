@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 //components
@@ -13,7 +11,6 @@ import 'package:e_commerce/components/PasswordTextField.dart';
 import 'package:e_commerce/components/BasicButton.dart';
 
 // utils
-import 'package:e_commerce/utils/constants.dart';
 import 'package:e_commerce/utils/stringConstants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';

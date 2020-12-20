@@ -5,8 +5,6 @@ import 'package:e_commerce/components/pageHeader.dart';
 import 'package:e_commerce/components/hamburger.dart';
 import 'package:e_commerce/components/EmailTextField.dart';
 import 'package:e_commerce/components/DisabledTextField.dart';
-// utils
-import 'package:e_commerce/utils/constants.dart';
 
 class MyProfile extends StatelessWidget {
   void handleFirstName(value) {

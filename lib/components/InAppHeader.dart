@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // utils
 import 'package:e_commerce/utils/constants.dart';
 
+// ignore: must_be_immutable
 class InAppHeader extends StatelessWidget implements PreferredSizeWidget {
   InAppHeader({@required this.label});
   String label;

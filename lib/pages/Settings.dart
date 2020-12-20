@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:e_commerce/components/pageHeader.dart';
 import 'package:e_commerce/components/hamburger.dart';
 
-// utils
-import 'package:e_commerce/utils/constants.dart';
-
 class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // utils
 import 'package:e_commerce/utils/constants.dart';
 
+// ignore: must_be_immutable
 class BasicButton extends StatelessWidget {
   BasicButton({@required this.name, @required this.handleOnPress});
   String name;

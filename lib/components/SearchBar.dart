@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:e_commerce/utils/constants.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 
+// ignore: must_be_immutable
 class SearchBar extends StatelessWidget implements PreferredSizeWidget {
   SearchBar({
     @required this.speechToText,
