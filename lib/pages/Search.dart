@@ -57,14 +57,16 @@ class _SearchState extends State<Search> {
         speechToText: speechToText,
         isListening: _isListening,
       ),
-      body: Container(
-        child: Column(
-          children: [
-            Text(
-              _text,
-              style: TextStyle(color: kBasicTextColor, fontSize: 30.0),
-            )
-          ],
+      body: SafeArea(
+        child: Container(
+          child: Column(
+            children: [
+              Text(
+                _text,
+                style: TextStyle(color: kBasicTextColor, fontSize: 30.0),
+              )
+            ],
+          ),
         ),
       ),
     );

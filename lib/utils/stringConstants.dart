@@ -15,3 +15,5 @@ const LOGIN = 'Login';
 const SIGNUP = 'Sign up';
 const NOTIFICATIONS = 'NOTIFICATIONS';
 const SHOPPING_BAG = ' SHOPPING BAG';
+const USERNAME = 'user_name';
+const GUEST = 'Guest';

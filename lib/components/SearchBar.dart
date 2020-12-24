@@ -11,7 +11,7 @@ class SearchBar extends StatelessWidget implements PreferredSizeWidget {
     @required this.isListening,
   });
   Function speechToText;
-  bool isListening = true;
+  bool isListening;
 
   @override
   Widget build(BuildContext context) {

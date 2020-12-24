@@ -18,6 +18,9 @@ class _NotificationsState extends State<Notifications> {
       appBar: InAppHeader(
         label: NOTIFICATIONS,
       ),
+      body: SafeArea(
+        child: Column(),
+      ),
     );
   }
 }

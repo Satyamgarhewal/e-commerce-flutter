@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'providers/navigation_provider.dart';
 
 // pages
 import 'pages/MyProfile.dart';
@@ -12,6 +14,7 @@ import 'pages/Search.dart';
 
 // utils
 import 'package:firebase_core/firebase_core.dart';
+import 'package:e_commerce/providers/userData.dart';
 
 //utils
 import 'utils/constants.dart';
@@ -23,28 +26,32 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  final dynamic data = 'State data';
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        //   accentColor: Color(0xFF363B64),
-        //   brightness: Brightness.dark,
-        primaryColor: kBasicTextColor,
+    return ChangeNotifierProvider<UserData>(
+      create: (context) => UserData(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          //   accentColor: Color(0xFF363B64),
+          //   brightness: Brightness.dark,
+          primaryColor: kBasicTextColor,
+        ),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => Welcome(),
+          '/home': (context) => BottomNavPage(),
+          '/login': (context) => LoginScreen(),
+          '/signup': (context) => SignUp(),
+          '/myprofile': (context) => MyProfile(),
+          '/notifications': (context) => Notifications(),
+          '/shoppingbag': (context) => ShoppingBag(),
+          '/search': (context) => Search()
+        },
       ),
-      initialRoute: '/',
-      routes: {
-        '/home': (context) => BottomNavPage(),
-        '/': (context) => Welcome(),
-        '/login': (context) => LoginScreen(),
-        '/signup': (context) => SignUp(),
-        '/myprofile': (context) => MyProfile(),
-        '/notifications': (context) => Notifications(),
-        '/shoppingbag': (context) => ShoppingBag(),
-        '/search': (context) => Search()
-      },
     );
   }
 }

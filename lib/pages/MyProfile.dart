@@ -20,50 +20,52 @@ class MyProfile extends StatelessWidget {
     return Scaffold(
       drawer: Hamburger(),
       appBar: PageHeader(header: 'My Profile'),
-      body: Container(
-          child: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 20.0),
-                child: Column(
-                  children: [
-                    CircleAvatar(
-                      radius: 50.0,
-                      backgroundColor: Colors.white,
-                      backgroundImage: AssetImage('assets/male-512.png'),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 15.0, vertical: 10.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: EmailTextField(
-                                hint: 'First name',
-                                handleEmailChange: handleFirstName),
-                          ),
-                          SizedBox(
-                            width: 15.0,
-                          ),
-                          Expanded(
-                              child: EmailTextField(
-                            hint: 'Last name',
-                            handleEmailChange: handleLastName,
-                          )),
-                        ],
+      body: SafeArea(
+        child: Container(
+            child: Container(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20.0),
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 50.0,
+                        backgroundColor: Colors.white,
+                        backgroundImage: AssetImage('assets/male-512.png'),
                       ),
-                    ),
-                    DisabledTextField(hint: 'elon@gmail.com')
-                  ],
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 15.0, vertical: 10.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: EmailTextField(
+                                  hint: 'First name',
+                                  handleEmailChange: handleFirstName),
+                            ),
+                            SizedBox(
+                              width: 15.0,
+                            ),
+                            Expanded(
+                                child: EmailTextField(
+                              hint: 'Last name',
+                              handleEmailChange: handleLastName,
+                            )),
+                          ],
+                        ),
+                      ),
+                      DisabledTextField(hint: 'elon@gmail.com')
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
-        ),
-      )),
+              )
+            ],
+          ),
+        )),
+      ),
     );
   }
 }

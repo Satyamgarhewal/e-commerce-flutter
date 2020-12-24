@@ -12,7 +12,7 @@ class Settings extends StatelessWidget {
       appBar: PageHeader(
         header: 'Settings',
       ),
-      body: Container(),
+      body: SafeArea(child: Container()),
     );
     // return BackgroundGradient();
   }

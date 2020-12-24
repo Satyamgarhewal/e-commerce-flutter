@@ -1,11 +1,43 @@
+import 'package:e_commerce/utils/stringConstants.dart';
 import 'package:flutter/material.dart';
 
 // utils
 import 'package:e_commerce/utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:e_commerce/utils/common.dart';
+import 'package:e_commerce/utils/localStorageConstants.dart';
 
-class Hamburger extends StatelessWidget {
+import 'package:shared_preferences/shared_preferences.dart';
+
+class Hamburger extends StatefulWidget {
+  @override
+  _HamburgerState createState() => _HamburgerState();
+}
+
+class _HamburgerState extends State<Hamburger> {
   final _auth = FirebaseAuth.instance;
+
+  String _email;
+  void fetchUserDetails() async {
+    String fetchedEmail = await getLocalStorage(EMAIL, STRING);
+    setState(() {
+      _email = fetchedEmail;
+    });
+  }
+
+  void logoutUser() {
+    deleteLocalStorage(EMAIL);
+    deleteLocalStorage(TOKEN);
+    _auth.signOut();
+    Navigator.pushNamed(context, '/login');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUserDetails();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -21,7 +53,7 @@ class Hamburger extends StatelessWidget {
               ),
             ),
             accountEmail: Text(
-              'satyam@gmail.com',
+              _email,
               style: TextStyle(
                 color: kBasicTextColor,
                 fontFamily: 'Comfortaa',
@@ -29,7 +61,7 @@ class Hamburger extends StatelessWidget {
               ),
             ),
             accountName: Text(
-              'Satyam Garhewal',
+              'Elon',
               style: TextStyle(
                 color: kBasicTextColor,
                 fontFamily: 'Comfortaa',
@@ -74,8 +106,7 @@ class Hamburger extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              _auth.signOut();
-              Navigator.pushNamed(context, '/login');
+              logoutUser();
             },
             child: ListTile(
               leading: Icon(Icons.logout, color: kBasicTextColor),

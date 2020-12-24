@@ -1,3 +1,4 @@
+import 'package:e_commerce/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 //components
@@ -14,6 +15,7 @@ import 'package:e_commerce/components/BasicButton.dart';
 import 'package:e_commerce/utils/stringConstants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:e_commerce/models/userLogin.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -56,26 +58,48 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  void _invalidUserDialog(String title, String content, context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(title),
+            content: Text(content),
+            actions: [
+              FlatButton(
+                color: kBasicTextColor,
+                child: Text(
+                  "OK",
+                  style: TextStyle(fontFamily: 'Comfortaa'),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
   void handleOnPress() async {
     if (isEmailValid && email.length > 0 && isPwdValid && password.length > 0) {
       setState(() {
         showSpinner = true;
       });
-
-      try {
-        final user = await _auth.signInWithEmailAndPassword(
-          email: email,
-          password: password,
-        );
-        print('user------------- $user');
-        if (user != null) {
-          setState(() {
-            showSpinner = false;
-          });
+      dynamic newUser = await signIn(email.trim(), password);
+      if (newUser == true) {
+        setState(() {
+          showSpinner = false;
           Navigator.pushNamed(context, '/home');
-        }
-      } catch (err) {
-        print(err);
+        });
+      } else if (newUser == false) {
+        final String title = 'Invalid email or password';
+        final String content =
+            'We were not able to login, please enter valid email and password';
+        setState(() {
+          showSpinner = false;
+        });
+        _invalidUserDialog(title, content, context);
       }
     } else {
       print('setting state');
@@ -94,60 +118,62 @@ class _LoginScreenState extends State<LoginScreen> {
         appBar: GuestOnboardHeader(),
         resizeToAvoidBottomPadding: false,
         body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  child: PageHeading(
-                    heading: WELCOME_BACK,
+          child: SafeArea(
+            child: Container(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    child: PageHeading(
+                      heading: WELCOME_BACK,
+                    ),
                   ),
-                ),
-                SecondaryHeading(heading: LOGIN_TO_CONTINUE),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 40.0,
-                    vertical: 10.0,
+                  SecondaryHeading(heading: LOGIN_TO_CONTINUE),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 40.0,
+                      vertical: 10.0,
+                    ),
+                    child: LottieAsset(
+                        asset: 'assets/lf30_editor_ly9ftyq9 (2).json'),
                   ),
-                  child: LottieAsset(
-                      asset: 'assets/lf30_editor_ly9ftyq9 (2).json'),
-                ),
-                Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 40.0, vertical: 10.0),
-                    child: EmailTextField(
-                        handleEmailChange: handleEmailChange, hint: EMAIL)),
-                !isEmailValid
-                    ? EnterValidMessage(
-                        invalidMesage: ENTER_VALID_EMAIL,
-                      )
-                    : SizedBox(
-                        height: 30.0,
-                      ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 40.0,
+                  Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 40.0, vertical: 10.0),
+                      child: EmailTextField(
+                          handleEmailChange: handleEmailChange, hint: EMAIL)),
+                  !isEmailValid
+                      ? EnterValidMessage(
+                          invalidMesage: ENTER_VALID_EMAIL,
+                        )
+                      : SizedBox(
+                          height: 30.0,
+                        ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 40.0,
+                    ),
+                    child: PasswordTextField(
+                      handlePasswordChange: handlePasswordChange,
+                      hintText: PASSWORD,
+                    ),
                   ),
-                  child: PasswordTextField(
-                    handlePasswordChange: handlePasswordChange,
-                    hintText: PASSWORD,
+                  !isPwdValid
+                      ? EnterValidMessage(
+                          invalidMesage: ENTER_VALID_PWD,
+                        )
+                      : SizedBox(
+                          height: 40.0,
+                        ),
+                  SizedBox(
+                    height: 30.0,
                   ),
-                ),
-                !isPwdValid
-                    ? EnterValidMessage(
-                        invalidMesage: ENTER_VALID_PWD,
-                      )
-                    : SizedBox(
-                        height: 40.0,
-                      ),
-                SizedBox(
-                  height: 30.0,
-                ),
-                BasicButton(
-                  handleOnPress: handleOnPress,
-                  name: PROCEED,
-                )
-              ],
+                  BasicButton(
+                    handleOnPress: handleOnPress,
+                    name: PROCEED,
+                  )
+                ],
+              ),
             ),
           ),
         ),
