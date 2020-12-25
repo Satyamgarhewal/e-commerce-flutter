@@ -17,9 +17,13 @@ class Hamburger extends StatefulWidget {
 class _HamburgerState extends State<Hamburger> {
   final _auth = FirebaseAuth.instance;
 
-  String _email;
+  String _email = '';
   void fetchUserDetails() async {
-    String fetchedEmail = await getLocalStorage(EMAIL, STRING);
+    fetchUserEmail();
+  }
+
+  void fetchUserEmail() async {
+    final String fetchedEmail = await getLocalStorage(EMAIL, STRING);
     setState(() {
       _email = fetchedEmail;
     });

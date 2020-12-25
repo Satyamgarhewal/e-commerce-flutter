@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // pages
-import 'package:e_commerce/pages/Dashboard.dart';
+import 'package:e_commerce/pages/Home.dart';
 import 'package:e_commerce/pages/MyProfile.dart';
 import 'package:e_commerce/components/BottomNavigationBar.dart';
 import 'package:e_commerce/pages/Settings.dart';
@@ -14,7 +14,7 @@ class BottomNavPage extends StatefulWidget {
 class _BottomNavPageState extends State<BottomNavPage> {
   int _currentIndex = 0;
   final tabs = [
-    Dashboard(),
+    Home(),
     MyProfile(),
     Settings(),
   ];

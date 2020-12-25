@@ -7,7 +7,7 @@ import 'package:e_commerce/components/hamburger.dart';
 // utils
 // import 'package:e_commerce/utils/constants.dart';
 
-class Dashboard extends StatelessWidget {
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
