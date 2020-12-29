@@ -8,7 +8,7 @@ class EnterValidMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 10.0),
+        padding: EdgeInsets.symmetric(vertical: 5.0),
         child: Text(
           invalidMesage,
           textAlign: TextAlign.left,

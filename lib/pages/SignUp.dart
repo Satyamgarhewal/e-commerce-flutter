@@ -132,92 +132,117 @@ class _SignUpState extends State<SignUp> {
     return ModalProgressHUD(
       inAsyncCall: showSpinner,
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        resizeToAvoidBottomPadding: false,
         appBar: GuestOnboardHeader(),
-        body: SingleChildScrollView(
-          reverse: true,
-          child: SafeArea(
-            child: Container(
-              child: Column(
-                children: [
-                  errorDialogue
-                      ? AlertModal()
-                      : SizedBox(
-                          height: 0.0,
+        body: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                  children: [
+                    errorDialogue
+                        ? AlertModal()
+                        : SizedBox(
+                            height: 0.0,
+                          ),
+                    Column(
+                      children: [
+                        PageHeading(
+                          heading: CREATE_YOUR_ACCOUNT,
                         ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 20.0, 0, 0),
-                    child: PageHeading(
-                      heading: CREATE_YOUR_ACCOUNT,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  SecondaryHeading(heading: SIGNUP_AND_GET_STARTED),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 40.0,
-                      vertical: 10.0,
-                    ),
-                    child:
-                        LottieAsset(asset: 'assets/lf30_editor_iwwdd5x3.json'),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 40.0, vertical: 10.0),
-                    child: EmailTextField(
-                      handleEmailChange: handleEmailChange,
-                      hint: EMAIL,
-                    ),
-                  ),
-                  !isEmailValid
-                      ? EnterValidMessage(invalidMesage: ENTER_VALID_EMAIL)
-                      : SizedBox(
+                        SizedBox(
                           height: 10.0,
                         ),
-                  Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 40.0,
+                        SecondaryHeading(heading: SIGNUP_AND_GET_STARTED),
+                      ],
+                    ),
+                    LottieAsset(asset: 'assets/lf30_editor_iwwdd5x3.json'),
+                    TextFormField(
+                      decoration: InputDecoration(
+                          hintText: 'Full name',
+                          prefixIcon: Icon(Icons.person_outlined)),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        hintText: 'Email',
+                        prefixIcon: Icon(Icons.email_outlined),
                       ),
-                      child: PasswordTextField(
-                        handlePasswordChange: handlePasswordChange,
-                        hintText: PASSWORD,
-                      )),
-                  !isPwdValid
-                      ? EnterValidMessage(
-                          invalidMesage: ENTER_VALID_PWD,
-                        )
-                      : SizedBox(
-                          height: 0.0,
-                        ),
-                  SizedBox(
-                    height: 30.0,
-                  ),
-                  Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 40.0,
+                      onChanged: (value) {
+                        handleEmailChange(value);
+                      },
+                    ),
+                    // EmailTextField(
+                    //   handleEmailChange: handleEmailChange,
+                    //   hint: EMAIL,
+                    // ),
+                    !isEmailValid
+                        ? EnterValidMessage(invalidMesage: ENTER_VALID_EMAIL)
+                        : SizedBox(
+                            height: 20.0,
+                          ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        hintText: 'Password',
+                        prefixIcon: Icon(Icons.lock_outlined),
                       ),
-                      child: PasswordTextField(
-                        handlePasswordChange: handleConfirmPwdChange,
-                        hintText: CONFIRM_PASSWORD,
-                      )),
-                  !isConfirmPwdValid
-                      ? EnterValidMessage(invalidMesage: PASSWORD_DOESNT_MATCH)
-                      : SizedBox(
-                          height: 0.0,
-                        ),
-                  SizedBox(
-                    height: 30.0,
-                  ),
-                  BasicButton(
-                    handleOnPress: handleProceed,
-                    name: PROCEED,
-                  ),
-                ],
+                      obscureText: true,
+                      onChanged: (value) {
+                        handlePasswordChange(value);
+                      },
+                    ),
+                    // PasswordTextField(
+                    //   handlePasswordChange: handlePasswordChange,
+                    //   hintText: PASSWORD,
+                    // ),
+                    !isPwdValid
+                        ? EnterValidMessage(
+                            invalidMesage: ENTER_VALID_PWD,
+                          )
+                        : SizedBox(
+                            height: 20.0,
+                          ),
+
+                    TextFormField(
+                      decoration: InputDecoration(
+                        hintText: 'Confirm Password',
+                        prefixIcon: Icon(Icons.lock_open_outlined),
+                      ),
+                      obscureText: true,
+                      onChanged: (value) {
+                        handleConfirmPwdChange(value);
+                      },
+                    ),
+                    !isConfirmPwdValid
+                        ? EnterValidMessage(
+                            invalidMesage: PASSWORD_DOESNT_MATCH)
+                        : SizedBox(
+                            height: 20.0,
+                          ),
+                    RaisedButton(
+                      onPressed: () {
+                        handleProceed();
+                      },
+                      child: Text(
+                        PROCEED,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15.0,
+                            fontFamily: 'Comfortaa',
+                            fontWeight: FontWeight.w500),
+                      ),
+                    )
+                    // BasicButton(
+                    //   handleOnPress: handleProceed,
+                    //   name: PROCEED,
+                    // ),
+                  ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),

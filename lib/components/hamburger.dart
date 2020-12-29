@@ -57,7 +57,7 @@ class _HamburgerState extends State<Hamburger> {
               ),
             ),
             accountEmail: Text(
-              _email,
+              'Email',
               style: TextStyle(
                 color: kBasicTextColor,
                 fontFamily: 'Comfortaa',

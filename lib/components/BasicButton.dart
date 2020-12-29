@@ -10,9 +10,8 @@ class BasicButton extends StatelessWidget {
   Function handleOnPress;
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return RaisedButton(
       color: kBasicTextColor,
-      minWidth: 200.0,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 13.0),
         child: Text(
@@ -30,6 +29,7 @@ class BasicButton extends StatelessWidget {
       onPressed: () {
         handleOnPress();
       },
+      elevation: 10.0,
     );
   }
 }

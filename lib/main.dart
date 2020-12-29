@@ -1,3 +1,4 @@
+import 'package:e_commerce/utils/ourTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/navigation_provider.dart';
@@ -34,12 +35,7 @@ class MyApp extends StatelessWidget {
       create: (context) => UserData(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
-          //   accentColor: Color(0xFF363B64),
-          //   brightness: Brightness.dark,
-          primaryColor: kBasicTextColor,
-        ),
+        theme: OurTheme().buildTheme(),
         initialRoute: '/',
         routes: {
           '/': (context) => Welcome(),

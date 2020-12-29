@@ -1,3 +1,4 @@
+import 'package:e_commerce/pages/SignUp.dart';
 import 'package:e_commerce/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -116,66 +117,77 @@ class _LoginScreenState extends State<LoginScreen> {
       inAsyncCall: showSpinner,
       child: Scaffold(
         appBar: GuestOnboardHeader(),
-        resizeToAvoidBottomPadding: false,
-        body: SingleChildScrollView(
-          child: SafeArea(
-            child: Container(
-              child: Column(
+        body: SafeArea(
+          child: Column(children: [
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
                 children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                    child: PageHeading(
+                  Column(children: [
+                    PageHeading(
                       heading: WELCOME_BACK,
                     ),
-                  ),
-                  SecondaryHeading(heading: LOGIN_TO_CONTINUE),
+                    SecondaryHeading(heading: LOGIN_TO_CONTINUE),
+                  ]),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 40.0,
                       vertical: 10.0,
                     ),
                     child: LottieAsset(
-                        asset: 'assets/lf30_editor_ly9ftyq9 (2).json'),
+                      asset: 'assets/lf30_editor_ly9ftyq9 (2).json',
+                    ),
                   ),
-                  Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 40.0, vertical: 10.0),
-                      child: EmailTextField(
-                          handleEmailChange: handleEmailChange, hint: EMAIL)),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      hintText: 'Email',
+                      prefixIcon: Icon(Icons.email_outlined),
+                    ),
+                    onChanged: (value) {
+                      handleEmailChange(value);
+                    },
+                  ),
                   !isEmailValid
                       ? EnterValidMessage(
                           invalidMesage: ENTER_VALID_EMAIL,
                         )
                       : SizedBox(
-                          height: 30.0,
+                          height: 20.0,
                         ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 40.0,
-                    ),
-                    child: PasswordTextField(
-                      handlePasswordChange: handlePasswordChange,
+                  TextFormField(
+                    decoration: InputDecoration(
                       hintText: PASSWORD,
+                      prefixIcon: Icon(Icons.lock_outlined),
                     ),
+                    onChanged: (value) {
+                      handlePasswordChange(value);
+                    },
+                    obscureText: true,
                   ),
                   !isPwdValid
                       ? EnterValidMessage(
                           invalidMesage: ENTER_VALID_PWD,
                         )
                       : SizedBox(
-                          height: 40.0,
+                          height: 20.0,
                         ),
-                  SizedBox(
-                    height: 30.0,
-                  ),
                   BasicButton(
                     handleOnPress: handleOnPress,
                     name: PROCEED,
-                  )
+                  ),
+                  FlatButton(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    child: Text("Don't have an account? Sign up here"),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => SignUp(),
+                      ));
+                    },
+                  ),
                 ],
               ),
             ),
-          ),
+          ]),
         ),
       ),
     );

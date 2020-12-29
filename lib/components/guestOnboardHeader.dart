@@ -1,3 +1,4 @@
+import 'package:e_commerce/pages/Welcome.dart';
 import 'package:flutter/material.dart';
 
 //utils
@@ -16,7 +17,11 @@ class GuestOnboardHeader extends StatelessWidget
             child: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.pushNamed(context, '/');
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => Welcome(),
+                  ),
+                );
               },
               alignment: Alignment.center,
               color: kBasicTextColor,

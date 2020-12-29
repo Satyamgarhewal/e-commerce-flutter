@@ -33,67 +33,80 @@ class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       body: SafeArea(
-        child: Container(
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 100.0, 0, 0),
-                child: PageHeading(heading: HELLO),
-              ),
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
-                  child: SecondaryHeading(
-                    heading: PLEASE_LOGIN_OR_SIGNUP,
-                  )),
-              LottieAsset(asset: 'assets/lf30_editor_rjtsruzw.json'),
-              SizedBox(
-                height: 20.0,
-              ),
-              FlatButton(
-                color: kBasicTextColor,
-                minWidth: 200.0,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 13.0),
-                  child: Text(
-                    'Login',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15.0,
-                      fontFamily: 'Comfortaa',
-                      fontWeight: FontWeight.w500,
-                    ),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 70.0),
+                children: [
+                  Column(
+                    children: [
+                      PageHeading(heading: HELLO),
+                      SizedBox(height: 10.0),
+                      SecondaryHeading(
+                        heading: PLEASE_LOGIN_OR_SIGNUP,
+                      ),
+                    ],
                   ),
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/login');
-                },
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              FlatButton(
-                color: kBasicTextColor,
-                minWidth: 200.0,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 13.0),
-                  child: Text(
-                    'Sign up',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15.0,
-                      fontFamily: 'Comfortaa',
-                      fontWeight: FontWeight.w500,
-                    ),
+                  SizedBox(
+                    height: 30.0,
                   ),
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/signup');
-                },
+                  LottieAsset(asset: 'assets/lf30_editor_rjtsruzw.json'),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  RaisedButton(
+                    color: kBasicTextColor,
+                    elevation: 10.0,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 13.0),
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15.0,
+                          fontFamily: 'Comfortaa',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/login');
+                    },
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  RaisedButton(
+                    color: kBasicTextColor,
+                    elevation: 10.0,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 13.0),
+                      child: Text(
+                        'Sign up',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15.0,
+                          fontFamily: 'Comfortaa',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/signup');
+                    },
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
